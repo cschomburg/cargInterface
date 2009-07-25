@@ -1,0 +1,6 @@
+## Interface: 30200
+## Author: Cargor
+## Title: cargBattlefieldMap
+## Notes: A nicer battlefield minimap.
+
+core.lua

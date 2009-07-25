@@ -1,0 +1,6 @@
+## Interface: 30000
+## Author: Cargor
+## Title: cargFader
+## Notes: Hides oUF out of combat and when no target is selected
+## Version: 1.0
+core.lua

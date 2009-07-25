@@ -1,0 +1,6 @@
+## Interface: 30100
+## Author: Cargor
+## Title: cargLoader
+## Notes: AddOn-Loader
+## Version: 1.0
+core.lua

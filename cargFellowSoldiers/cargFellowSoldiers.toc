@@ -1,0 +1,7 @@
+## Interface: 30300
+## Title: cargFellowSoldiers
+## Author: Cargor
+## X-eMail: xconstruct@gmail.com
+## Notes: Colors friends in raid on map.
+
+core.lua

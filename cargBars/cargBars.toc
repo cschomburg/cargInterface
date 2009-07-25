@@ -1,0 +1,8 @@
+## Interface: 30100
+## Author: Cargor
+## Title: cargBars
+## Version: 1.0
+## Notes: Modifies the Blizzard ActionBars
+## X-Credits: Lolzen
+
+core.lua

@@ -1,0 +1,6 @@
+## Interface: 30200
+## Title: cargMinimap
+## Author: Cargor
+## Notes: Yet another minimap addon.
+
+core.lua

@@ -1,0 +1,7 @@
+## Interface: 30000
+## Title: cargMap
+## Notes: Some map improvements
+## Author: Cargor
+## Version: 1.0
+
+core.lua
