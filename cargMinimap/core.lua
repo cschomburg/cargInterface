@@ -96,6 +96,8 @@ local event = function(self, event)
 	texturepath = nil
 end
 Minimap:SetZoom(0)
+function ToggleMinimap() ToggleFrame(MinimapCluster) end
+MinimapCluster:Hide()
 
 addon:SetScript("OnEvent", event)
 addon:RegisterEvent"PLAYER_LOGIN"

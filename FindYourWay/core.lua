@@ -2,9 +2,12 @@ local db = {
 	["books"] = "308460265522523547436467567456643524468390468400", -- Higher Learning coords
 }
 
-local helper = WorldMapDetailFrame:CreateTexture()
+local helper = CreateFrame("Frame", nil, WorldMapDetailFrame)
 helper:SetAllPoints(WorldMapDetailFrame)
-helper:SetTexture(0, 0, 0, 0.8)
+helper:SetFrameLevel(2)
+helper.tex = helper:CreateTexture()
+helper.tex:SetTexture(0, 0, 0, 0.8)
+helper.tex:SetAllPoints(helper)
 helper:Hide()
 
 local numShown = 0
