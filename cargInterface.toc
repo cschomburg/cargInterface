@@ -17,5 +17,5 @@ cargMap\core.lua
 cargMinimap\core.lua
 cargBuff\core.lua
 cargSellsStuff\core.lua
-cargFellowSoldiers\core.lua
 FindYourWay\core.lua
+FellowSoldiers\core.lua

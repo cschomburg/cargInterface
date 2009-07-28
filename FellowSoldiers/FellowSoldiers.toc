@@ -1,5 +1,5 @@
-## Interface: 30300
-## Title: cargFellowSoldiers
+## Interface: 30200
+## Title: FellowSoldiers
 ## Author: Cargor
 ## X-eMail: xconstruct@gmail.com
 ## Notes: Colors friends in raid on map.

@@ -1,12 +1,12 @@
 --[[
-	cargFellowSoldiers
+	FellowSoldiers
 ]]
 local texturepath
 local dummy = function() end
-if(IsAddOnLoaded("cargFellowSoldiers")) then -- Loaded in cargInterface or externally?
-	texturepath = [[Interface\AddOns\cargFellowSoldiers\]]
+if(IsAddOnLoaded("FellowSoldiers")) then -- Loaded in cargInterface or externally?
+	texturepath = [[Interface\AddOns\FellowSoldiers\]]
 else
-	texturepath = [[Interface\AddOns\cargInterface\cargFellowSoldiers\]]
+	texturepath = [[Interface\AddOns\cargInterface\FellowSoldiers\]]
 end
 local blizzIcon = [[Interface\Worldmap\WorldMapPartyIcon]]
 
