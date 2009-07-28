@@ -1,6 +1,0 @@
-## Interface: 30000
-## Author: Cargor
-## Title: cargOnlyChat
-## Notes: Filters afk and dnd messages after you see them once
-## Version: 1.0
-core.lua

@@ -1,6 +1,0 @@
-## Interface: 30000
-## Author: Cargor
-## Title: cargOnlyChat
-## Notes: Hide all frames except chat
-## Version: 1.0
-core.lua
