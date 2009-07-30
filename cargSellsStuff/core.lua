@@ -16,6 +16,8 @@ local function cash_to_string(cash)
 	return gold..silver..copper
 end
 
+local function getID(link) return link and tonumber(link:match("item:(%d+)")) end
+
 local addon = CreateFrame"Frame"
 addon:SetScript("OnEvent", function()
 	if(event == "VARIABLES_LOADED") then
@@ -28,7 +30,7 @@ addon:SetScript("OnEvent", function()
 		for slot = 0, GetContainerNumSlots(bag) do
 			local link = GetContainerItemLink(bag, slot)
 			if(link) then
-				if(select(3, GetItemInfo(link)) == 0 or (cargSellsStuff and cargSellsStuff[link])) then
+				if(select(3, GetItemInfo(link)) == 0 or (cargSellsStuff and cargSellsStuff[getID(link)])) then
 					local _, stack = GetContainerItemInfo(bag, slot)
 					local value = GetSellValue and GetSellValue(link) or select(11, GetItemInfo(link))
 					if(value) then profit = profit + stack*value end
@@ -49,11 +51,12 @@ addon:RegisterEvent("VARIABLES_LOADED")
 
 SlashCmdList['CARGSELLSSTUFF'] = function(link)
 	link = link:trim()
-	if(cargSellsStuff[link]) then
-		cargSellsStuff[link] = nil
+	local id = getID(link)
+	if(cargSellsStuff[id]) then
+		cargSellsStuff[id] = nil
 		print("Removed "..link.." from cargSellsStuff")
 	else
-		cargSellsStuff[link] = true
+		cargSellsStuff[id] = true
 		print("Added "..link.." to cargSellsStuff")
 	end
 end

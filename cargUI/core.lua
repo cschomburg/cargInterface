@@ -42,8 +42,8 @@ for i=1, 2 do
 	local bar = CreateFrame("Frame", "cargUI"..i, UIParent)
 	bar:SetHeight(20)
 	bar:SetBackdrop({
-		bgFile = "Interface\\AddOns\\cargTip\\textures\\statusbar", tile = true, tileSize = 16,
-		edgeFile = "Interface\\AddOns\\cargTip\\textures\\border", edgeSize = 8,
+		bgFile = "Interface\\AddOns\\lolTip\\Textures\\UI-StatusBar", tile = true, tileSize = 16,
+		edgeFile = "Interface\\AddOns\\lolTip\\Textures\\UI-Tooltip-Border", edgeSize = 8,
 		insets = {left = 2, right = 2, top = 2, bottom = 2},
 	})
 	--frame1:SetBackdropColor(0.20, 0.40, 8.5, 1) --Saved if i want it that blue sometime again
