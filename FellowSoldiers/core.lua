@@ -20,25 +20,17 @@ end
 local _G = getfenv(0)
 local setTex = WorldMapRaid1Icon.SetTexture
 
-local i=1
-while(_G['WorldMapRaid'..i]) do
-	local icon = _G['WorldMapRaid'..i..'Icon']
-	icon.SetVertexColor = dummy
-	icon.SetTexture = dummy
-	i = i+1
-end
-
-local addon = CreateFrame"Frame"
-addon:SetScript("OnEvent", function()
+local addon = CreateFrame("Frame", nil, WorldMapButton)
+addon:SetScript("OnUpdate", function()
 	local colorServer = select(2, IsInInstance()) == "pvp"
 	local i=1
-	while(_G['WorldMapRaid'..i]) do
+	while(_G['WorldMapRaid'..i] and _G['WorldMapRaid'..i]:IsShown()) do
 		local button = _G['WorldMapRaid'..i]
 		local unit = button.unit
 		if(unit) then
 			local name, server = UnitName(unit)
 			local icon = _G['WorldMapRaid'..i..'Icon']
-			server = server == "" and nil or server
+			if(server == "") then server = nil end
 
 			if(friends[name] and not server) then
 				setTex(icon, texturepath.."GreenDot")
@@ -54,5 +46,3 @@ addon:SetScript("OnEvent", function()
 		end
 	end
 end)
-addon:RegisterEvent"RAID_ROSTER_UPDATE"
-addon:RegisterEvent"PLAYER_ENTERING_WORLD"
