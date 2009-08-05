@@ -32,7 +32,7 @@ addon:SetScript("OnEvent", function()
 			if(link) then
 				if(select(3, GetItemInfo(link)) == 0 or (cargSellsStuff and cargSellsStuff[getID(link)])) then
 					local _, stack = GetContainerItemInfo(bag, slot)
-					local value = GetSellValue and GetSellValue(link) or select(11, GetItemInfo(link))
+					local value = select(11, GetItemInfo(link))
 					if(value) then profit = profit + stack*value end
 					PickupContainerItem(bag, slot)
 					PickupMerchantItem(0)
