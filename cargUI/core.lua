@@ -2,6 +2,8 @@
 	cargUI
 ]]
 
+PVPParentFrameTab2:Click()
+
 local texturepath
 local dummy = function() end
 if(IsAddOnLoaded("cargUI")) then -- Loaded in cargInterface or externally?
