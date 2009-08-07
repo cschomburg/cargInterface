@@ -17,6 +17,7 @@ end
 for i=1, GetNumGuildMembers(true) do
 	friends[GetGuildRosterInfo(i)] = true
 end
+gFriends = friends
 local _G = getfenv(0)
 local setTex = WorldMapRaid1Icon.SetTexture
 
@@ -32,12 +33,12 @@ addon:SetScript("OnUpdate", function()
 			local icon = _G['WorldMapRaid'..i..'Icon']
 			if(server == "") then server = nil end
 
-			if(friends[name] and not server) then
-				setTex(icon, texturepath.."GreenDot")
-				button:SetFrameLevel(5)
-			elseif(name and not server and colorServer) then
+			if(friends[name]) then
 				setTex(icon, texturepath.."BlueDot")
-				button:SetFrameLevel(4)
+				button:SetFrameLevel(5)
+--			elseif(name and not server and colorServer) then
+--				setTex(icon, texturepath.."GreenDot")
+--				button:SetFrameLevel(4)
 			else
 				setTex(icon, blizzIcon)
 				button:SetFrameLevel(3)

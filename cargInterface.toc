@@ -9,7 +9,7 @@ cargUI\core.lua
 
 cargAttach\core.lua
 cargBars\core.lua
-cargBattlefieldMap\core.lua
+#cargBattlefieldMap\core.lua
 cargChatLulz\core.lua
 cargFader\core.lua
 cargLoader\core.lua
