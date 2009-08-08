@@ -2,7 +2,7 @@
 ## Title: cargInterface
 ## Author: Cargor
 ## Notes: Provides a collection of small ui tweaking mods
-## RequiredDeps: LibFx-1.1, oUF_TribalGears
+## RequiredDeps: oUF_TribalGears
 ## SavedVariables: FindYourWay, cargSellsStuff
 
 cargBroker\LibStub.lua
