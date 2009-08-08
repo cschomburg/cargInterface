@@ -59,10 +59,12 @@ bar1:SetPoint("BOTTOMRIGHT", ChatFrame1, "BOTTOMRIGHT", 1, -2)
 bar2:SetPoint("BOTTOMRIGHT", BAR_WIDTH-18, -2)
 bar2:SetWidth(BAR_WIDTH)
 bar2:SetBackdropColor(0.1, 0.1, 0.1, 0.6)
+bar2:SetFrameLevel(3)
 
+local hideBarButton, hidden
 local LFX = LibStub and LibStub("LibFx-1.1", true)
 if(LFX) then
-	local hidden = true
+	hidden = true
 	local offset = BAR_WIDTH-20
 	local slide = LFX.New{
 		frame = bar2,
@@ -72,7 +74,7 @@ if(LFX) then
 		duration = 0.3,
 	}
 
-	local hideBarButton = CreateFrame("Button", nil, UIParent)
+	hideBarButton = CreateFrame("Button", nil, UIParent)
 	hideBarButton:SetScript("OnClick", function() fixed = not fixed end)
 	hideBarButton:SetWidth(20)
 	hideBarButton:SetHeight(20)
@@ -92,6 +94,18 @@ if(LFX) then
 		hidden = not hidden
 	end)
 end
+
+local mouseOver = CreateFrame("Frame", nil, UIParent)
+mouseOver:SetPoint("BOTTOMRIGHT")
+mouseOver:SetWidth(BAR_WIDTH)
+mouseOver:SetHeight(100)
+mouseOver:SetScript("OnUpdate", function(self)
+	local yes = MouseIsOver(self)
+	if((yes and hidden) or (not yes and not hidden)) then
+		hideBarButton:Click()
+	end
+end)
+gMouse = mouseOver
 
 
 --[[
