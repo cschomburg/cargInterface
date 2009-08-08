@@ -61,39 +61,36 @@ bar2:SetWidth(BAR_WIDTH)
 bar2:SetBackdropColor(0.1, 0.1, 0.1, 0.6)
 bar2:SetFrameLevel(3)
 
-local hideBarButton, hidden
 local LFX = LibStub and LibStub("LibFx-1.1", true)
-if(LFX) then
-	hidden = true
-	local offset = BAR_WIDTH-20
-	local slide = LFX.New{
-		frame = bar2,
-		anim = "Translate",
-		ramp = "Smooth",
-		xOffset = offset,
-		duration = 0.3,
-	}
+local hidden = true
+local offset = BAR_WIDTH-20
+local slide = LFX.New{
+	frame = bar2,
+	anim = "Translate",
+	ramp = "Smooth",
+	xOffset = offset,
+	duration = 0.3,
+}
 
-	hideBarButton = CreateFrame("Button", nil, UIParent)
-	hideBarButton:SetScript("OnClick", function() fixed = not fixed end)
-	hideBarButton:SetWidth(20)
-	hideBarButton:SetHeight(20)
-	hideBarButton:SetPoint("LEFT", bar2, "LEFT", 0, 0)
-	hideBarButton:SetNormalFontObject("GameFontHighlightSmall")
-	hideBarButton:SetText("<")
-	hideBarButton:SetScript("OnClick", function(self)
-		if(hidden) then
-			slide.xOffset = -offset
-			slide()
-			self:SetText(">")
-		else
-			slide.xOffset = offset
-			slide()
-			self:SetText("<")
-		end
-		hidden = not hidden
+local hideBarButton = CreateFrame("Button", nil, UIParent)
+hideBarButton:SetScript("OnClick", function() fixed = not fixed end)
+hideBarButton:SetWidth(20)
+hideBarButton:SetHeight(20)
+hideBarButton:SetPoint("LEFT", bar2, "LEFT", 0, 0)
+hideBarButton:SetNormalFontObject("GameFontHighlightSmall")
+hideBarButton:SetText("<")
+hideBarButton:SetScript("OnClick", function(self)
+	if(hidden) then
+		slide.xOffset = -offset
+		slide()
+		self:SetText(">")
+	else
+		slide.xOffset = offset
+		slide()
+		self:SetText("<")
+	end
+	hidden = not hidden
 	end)
-end
 
 local mouseOver = CreateFrame("Frame", nil, UIParent)
 mouseOver:SetPoint("BOTTOMRIGHT")
@@ -101,7 +98,7 @@ mouseOver:SetWidth(BAR_WIDTH)
 mouseOver:SetHeight(100)
 mouseOver:SetScript("OnUpdate", function(self)
 	local yes = MouseIsOver(self)
-	if((yes and hidden) or (not yes and not hidden)) then
+	if(((yes and hidden) or (not yes and not hidden)) and not slide:IsRunning()) then
 		hideBarButton:Click()
 	end
 end)
