@@ -1,6 +1,0 @@
-## Interface: 30200
-## Title: cargSellsStuff
-## Author: Cargor
-# SavedVariables: cargSellsStuff
-
-core.lua

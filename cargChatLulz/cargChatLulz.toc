@@ -1,6 +1,0 @@
-## Interface: 30200
-## Author: Cargor
-## Title: cargChatLulz
-## Notes: LULZ!!!11
-
-core.lua
