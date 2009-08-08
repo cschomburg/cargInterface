@@ -37,7 +37,7 @@ UIParent:SetScale(0.75)
 
 texturepath = nil
 
-local BAR_WIDTH = 300
+local BAR_WIDTH = 220
 
 local bar1, bar2
 for i=1, 2 do
@@ -56,7 +56,7 @@ for i=1, 2 do
 end
 bar1:SetPoint("BOTTOMLEFT", ChatFrame1, "BOTTOMLEFT", -1, -2)
 bar1:SetPoint("BOTTOMRIGHT", ChatFrame1, "BOTTOMRIGHT", 1, -2)
-bar2:SetPoint("BOTTOMRIGHT", 282, -2)
+bar2:SetPoint("BOTTOMRIGHT", BAR_WIDTH-18, -2)
 bar2:SetWidth(BAR_WIDTH)
 bar2:SetBackdropColor(0.1, 0.1, 0.1, 0.6)
 
@@ -69,7 +69,7 @@ if(LFX) then
 		anim = "Translate",
 		ramp = "Smooth",
 		xOffset = offset,
-		duration = 0.5,
+		duration = 0.3,
 	}
 
 	local hideBarButton = CreateFrame("Button", nil, UIParent)
