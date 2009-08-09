@@ -2,7 +2,7 @@
 	FellowSoldiers
 ]]
 local addonPath = debugstack():match("(.+\\).-\.lua:")
-local texturepath = addonPath.."textures/"
+local texturepath = addonPath.."textures\\"
 local blizzIcon = [[Interface\Worldmap\WorldMapPartyIcon]]
 
 local dummy = function() end

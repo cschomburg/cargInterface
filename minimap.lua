@@ -2,7 +2,7 @@
 	cargMinimap
 ]]
 local addonPath = debugstack():match("(.+\\).-\.lua:")
-local texturepath = addonPath.."textures/"
+local texturepath = addonPath.."textures\\"
 
 local addon = CreateFrame"Frame"
 local dummy = function() return nil end

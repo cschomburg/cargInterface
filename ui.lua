@@ -7,6 +7,8 @@ PVPParentFrameTab2:Click()
 local addonPath = debugstack():match("(.+\\).-\.lua:")
 local texturepath = addonPath.."textures/"
 
+local dummy = function() end
+
 RAID_CLASS_COLORS['SHAMAN'] = { r = 0, g = .8, b = .6 }
 
 local addon = CreateFrame("Frame", nil, UIParent)

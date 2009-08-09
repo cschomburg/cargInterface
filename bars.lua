@@ -7,7 +7,7 @@
 ####################]]--
 
 local addonPath = debugstack():match("(.+\\).-\.lua:")
-local path = addonPath.."textures/"
+local path = addonPath.."textures\\"
 
 if false then return end
 local dummy = function() end

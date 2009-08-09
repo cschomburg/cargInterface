@@ -14,7 +14,7 @@ libs\LibFx-1.1\LibFx-1.1.lua
 ui.lua
 
 attach.lua
-barslua
+bars.lua
 # battlefieldMap.lua
 broker.lua
 chatLulz.lua
