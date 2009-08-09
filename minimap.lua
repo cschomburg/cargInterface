@@ -1,12 +1,8 @@
 --[[
 	cargMinimap
 ]]
-local texturepath
-if(IsAddOnLoaded("cargMinimap")) then -- Loaded in cargInterface or externally?
-	texturepath = [[Interface\AddOns\cargMinimap\textures\]]
-else
-	texturepath = [[Interface\AddOns\cargInterface\cargMinimap\textures\]]
-end
+local addonPath = debugstack():match("(.+\\).-\.lua:")
+local texturepath = addonPath.."textures/"
 
 local addon = CreateFrame"Frame"
 local dummy = function() return nil end

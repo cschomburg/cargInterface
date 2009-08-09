@@ -6,6 +6,9 @@
 			rActionBarStyler from Roth
 ####################]]--
 
+local addonPath = debugstack():match("(.+\\).-\.lua:")
+local path = addonPath.."textures/"
+
 if false then return end
 local dummy = function() end
 
@@ -115,7 +118,6 @@ for _, frame in pairs(hiddenForever) do
 	frame.ClearAllPoints = dummy
 end
 
-local path = "Interface\\AddOns\\cargInterface\\cargBars\\media\\"
 --RANGE_INDICATOR = ""
 
 local color_rn = 0.37

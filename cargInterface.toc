@@ -5,26 +5,24 @@
 ## RequiredDeps: oUF_TribalGears
 ## SavedVariables: FindYourWay, cargSellsStuff
 
-cargBroker\LibStub.lua
-cargBroker\CallbackHandler-1.0.lua
-cargBroker\LibDataBroker-1.1.lua
-cargBroker\LibCargoShip-2.0\LibCargoShip-2.0.lua
+libs\LibStub.lua
+libs\CallbackHandler-1.0.lua
+libs\LibDataBroker-1.1.lua
+libs\LibCargoShip-2.0\LibCargoShip-2.0.lua
+libs\LibFx-1.1\LibFx-1.1.lua
 
-cargUI\LibFx-1.1\LibFx-1.1.lua
+ui.lua
 
-cargUI\core.lua
-
-cargAttach\core.lua
-cargBars\core.lua
-#cargBattlefieldMap\core.lua
-cargBroker\core.lua
-cargChatLulz\core.lua
-cargFader\core.lua
-cargLoader\core.lua
-cargMap\core.lua
-cargMinimap\core.lua
-cargBuff\core.lua
-cargSellsStuff\core.lua
-FindYourWay\core.lua
-FellowSoldiers\core.lua
-ThankTheLight\core.lua
+attach.lua
+barslua
+# battlefieldMap.lua
+broker.lua
+chatLulz.lua
+fader.lua
+fellowSoldiers.lua
+findYourWay.lua
+loader.lua
+map.lua
+minimap.lua
+sellStuff.lua
+thankTheLight.lua

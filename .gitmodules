@@ -1,6 +1,0 @@
-[submodule "cargBroker/LibCargoShip-2.0"]
-	path = cargBroker/LibCargoShip-2.0
-	url = git://github.com/xconstruct/LibCargoShip-2.0.git
-[submodule "cargUI/LibFx-1.1"]
-	path = cargUI/LibFx-1.1
-	url = git://github.com/xconstruct/LibFx-1.1.git

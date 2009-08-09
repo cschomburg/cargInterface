@@ -4,13 +4,8 @@
 
 PVPParentFrameTab2:Click()
 
-local texturepath
-local dummy = function() end
-if(IsAddOnLoaded("cargUI")) then -- Loaded in cargInterface or externally?
-	texturepath = [[Interface\AddOns\cargUI\textures\]]
-else
-	texturepath = [[Interface\AddOns\cargInterface\cargUI\textures\]]
-end
+local addonPath = debugstack():match("(.+\\).-\.lua:")
+local texturepath = addonPath.."textures/"
 
 RAID_CLASS_COLORS['SHAMAN'] = { r = 0, g = .8, b = .6 }
 
@@ -34,8 +29,6 @@ addon:SetScript("OnEvent", function()
 end)
 	
 UIParent:SetScale(0.75)
-
-texturepath = nil
 
 local BAR_WIDTH = 220
 

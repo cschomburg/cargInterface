@@ -1,14 +1,11 @@
 --[[
 	FellowSoldiers
 ]]
-local texturepath
-local dummy = function() end
-if(IsAddOnLoaded("FellowSoldiers")) then -- Loaded in cargInterface or externally?
-	texturepath = [[Interface\AddOns\FellowSoldiers\]]
-else
-	texturepath = [[Interface\AddOns\cargInterface\FellowSoldiers\]]
-end
+local addonPath = debugstack():match("(.+\\).-\.lua:")
+local texturepath = addonPath.."textures/"
 local blizzIcon = [[Interface\Worldmap\WorldMapPartyIcon]]
+
+local dummy = function() end
 
 local friends = {}
 for i=1, GetNumFriends() do
