@@ -1,0 +1,6 @@
+[submodule "libs/LibCargoShip-2.0"]
+	path = libs/LibCargoShip-2.0
+	url = git@github.com:xconstruct/LibCargoShip-2.0.git
+[submodule "libs/LibFx-1.1"]
+	path = libs/LibFx-1.1
+	url = git@github.com:xconstruct/LibFx-1.1.git
