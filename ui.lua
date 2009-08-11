@@ -67,38 +67,27 @@ local slide = LFX.New{
 	duration = 0.3,
 }
 
-local hideBarButton = CreateFrame("Button", nil, UIParent)
-hideBarButton:SetScript("OnClick", function() fixed = not fixed end)
-hideBarButton:SetWidth(20)
-hideBarButton:SetHeight(20)
-hideBarButton:SetPoint("LEFT", bar2, "LEFT", 0, 0)
-hideBarButton:SetNormalFontObject("GameFontHighlightSmall")
-hideBarButton:SetText("<")
-hideBarButton:SetScript("OnClick", function(self)
+local function toggleBar()
 	if(hidden) then
 		slide.xOffset = -offset
 		slide()
-		self:SetText(">")
 	else
 		slide.xOffset = offset
 		slide()
-		self:SetText("<")
 	end
 	hidden = not hidden
-	end)
+end
 
 local mouseOver = CreateFrame("Frame", nil, UIParent)
 mouseOver:SetPoint("BOTTOMRIGHT")
 mouseOver:SetWidth(BAR_WIDTH)
-mouseOver:SetHeight(100)
+mouseOver:SetHeight(BAR_WIDTH)
 mouseOver:SetScript("OnUpdate", function(self)
 	local yes = MouseIsOver(self)
 	if(((yes and hidden) or (not yes and not hidden)) and not slide:IsRunning()) then
-		hideBarButton:Click()
+		toggleBar()
 	end
 end)
-gMouse = mouseOver
-
 
 --[[
 local tastyFrame = CreateFrame("Frame", nil, UIParent)
