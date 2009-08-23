@@ -89,7 +89,6 @@ mouseOver:SetScript("OnUpdate", function(self)
 	end
 end)
 
---[[
 local tastyFrame = CreateFrame("Frame", nil, UIParent)
 tastyFrame:SetPoint("BOTTOM", 0, 10)
 tastyFrame:SetWidth(50)
@@ -98,11 +97,10 @@ tastyFrame:SetScale(1.4)
 
 local tastyText = tastyFrame:CreateFontString(nil, "OVERLAY")
 tastyText:SetFont("Fonts\\FRIZQT__.TTF", 12, "OUTLINE")
-tastyText:SetText("0")
 tastyText:SetAllPoints()
 
 tastyFrame:SetScript("OnEvent", function()
-	tastyText:SetText(GetItemCount(19807))
+	local count = GetItemCount(19807)
+	tastyText:SetText(count > 0 and count)
 end)
 tastyFrame:RegisterEvent"BAG_UPDATE"
---]]
