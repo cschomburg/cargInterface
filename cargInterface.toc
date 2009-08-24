@@ -13,6 +13,7 @@ libs\LibFx-1.1\LibFx-1.1.lua
 
 ui.lua
 
+afk.lua
 attach.lua
 bars.lua
 # battlefieldMap.lua

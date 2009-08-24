@@ -6,9 +6,10 @@ friends:SetPoint("BOTTOMRIGHT", cargUI2, "BOTTOMRIGHT", -5, 2)
 
 local durability = cargoShip{
 	name = "Attrition",
-	noIcon = true
+	noIcon = true,
 }
 durability:SetPoint("RIGHT", friends, "LEFT", -15, 0)
+durability.TagString = "[Name]: [value]lol"
 
 local fps = cargoShip("picoFPS")
 fps:SetPoint("RIGHT", durability, "LEFT", -15, 0)
