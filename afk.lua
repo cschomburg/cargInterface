@@ -82,6 +82,7 @@ end
 addon.PLAYER_ENTERING_WORLD = addon.PLAYER_FLAGS_CHANGED
 
 function addon:CHAT_MSG_WHISPER(event, msg, author)
+	if not AFK then return end
 	messages[#messages+1] = ("|cffcccccc%s»|r %s: %s"):format(date"%H%M.%S", author, msg)
 	updateMessages()
 end
