@@ -1,10 +1,11 @@
 --[[
 	cargMinimap
 ]]
+
+local LCE = LibStub("LibCargEvents-1.0")
 local addonPath = debugstack():match("(.+\\).-\.lua:")
 local texturepath = addonPath.."textures\\"
 
-local addon = CreateFrame"Frame"
 local dummy = function() return nil end
 local frames = {
 	MinimapZoomIn,
@@ -31,16 +32,7 @@ tracking:SetFontObject(GameFontHighlight)
 tracking:Hide()
 
 local mmp
-local event = function(self, event)
-	local trackName, trackActive
-	for i=1, GetNumTrackingTypes() do
-		trackName, _, trackActive = GetTrackingInfo(i)
-		if(trackActive) then
-			tracking:SetText(trackName)
-			break
-		end
-	end
-	if(not trackActive) then tracking:SetText("None") end
+LCE.RegisterEvent("cargMinimap", "PLAYER_LOGIN", function()
 	if(event ~= "PLAYER_LOGIN") then return nil end
 
 	--local ring = Minimap:CreateTexture("cargMinimapRing","OVERLAY")
@@ -90,11 +82,20 @@ local event = function(self, event)
 	end
 	frames = nil
 	texturepath = nil
-end
+end)
+
+LCE.RegisterEvent("cargMinimap", "MINIMAP_UPDATE_TRACKING", function()
+	local trackName, trackActive
+	for i=1, GetNumTrackingTypes() do
+		trackName, _, trackActive = GetTrackingInfo(i)
+		if(trackActive) then
+			tracking:SetText(trackName)
+			break
+		end
+	end
+	if(not trackActive) then tracking:SetText("None") end
+end)
+
 Minimap:SetZoom(0)
 function ToggleMinimap() ToggleFrame(MinimapCluster) end
 MinimapCluster:Hide()
-
-addon:SetScript("OnEvent", event)
-addon:RegisterEvent"PLAYER_LOGIN"
-addon:RegisterEvent"MINIMAP_UPDATE_TRACKING"

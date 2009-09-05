@@ -31,11 +31,8 @@ addon:SetScript("OnUpdate", function()
 			if(server == "") then server = nil end
 
 			if(friends[name]) then
-				setTex(icon, texturepath.."BlueDot")
+				setTex(icon, texturepath.."GreenDot")
 				button:SetFrameLevel(5)
---			elseif(name and not server and colorServer) then
---				setTex(icon, texturepath.."GreenDot")
---				button:SetFrameLevel(4)
 			else
 				setTex(icon, blizzIcon)
 				button:SetFrameLevel(3)

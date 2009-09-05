@@ -2,7 +2,8 @@
 	cargLoader
 ]]
 
-local addon = CreateFrame("Frame", "cargLoader", UIParent)
+local LCE = LibStub("LibCargEvents-1.0")
+local addon = {}
 local _G = getfenv(0)
 
 local slash = {
@@ -10,14 +11,14 @@ local slash = {
 	["peggle"] = "Peggle",
 }
 
-function addon:event(event)
+LCE.RegisterEvent(addon, "UPDATE_BATTLEFIELD_STATUS", function(self)
    if(event == "UPDATE_BATTLEFIELD_STATUS") then
 		self:loadAddOn("Capping", 1)
 		if(select(6, GetBattlefieldStatus(1)) > 0) then
 			self:loadAddOn("Proximo", 1)
 		end
 	end
-end
+end)
 
 function addon:loadAddOn(addon, nohint) 
 	local loaded, reason = LoadAddOn(addon)
@@ -29,9 +30,6 @@ function addon:loadAddOn(addon, nohint)
 		end
 	end
 end
-
-addon:RegisterEvent"UPDATE_BATTLEFIELD_STATUS"
-addon:SetScript("OnEvent", addon.event)
 
 SlashCmdList['LOADADDON'] = function(msg) addon:loadAddOn(msg) end
 SLASH_LOADADDON1 = '/loadaddon'

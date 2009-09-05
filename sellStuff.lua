@@ -1,6 +1,8 @@
 --[[
 	Yet another junk-selling addon
 ]]
+local LCE = LibStub("LibCargEvents-1.0")
+
 local function cash_to_string(cash)
 	if not cash then return "?" end
 
@@ -18,12 +20,11 @@ end
 
 local function getID(link) return link and tonumber(link:match("item:(%d+)")) end
 
-local addon = CreateFrame"Frame"
-addon:SetScript("OnEvent", function()
-	if(event == "VARIABLES_LOADED") then
-		cargSellsStuff = cargSellsStuff or {}
-		return
-	end
+LCE.RegisterEvent("cargSellsStuff", "VARIABLES_LOADED", function()
+	cargSellsStuff = cargSellsStuff or {}
+end)
+
+LCE.RegisterEvent("cargSellsStuff", "MERCHANT_SHOW", function()
 	local count = 0
 	local profit = 0
 	for bag = 0, 4 do
@@ -46,8 +47,6 @@ addon:SetScript("OnEvent", function()
 		print(("Sold %d trash items for %s."):format(count, cash_to_string(profit)))
 	end
 end)
-addon:RegisterEvent("MERCHANT_SHOW")
-addon:RegisterEvent("VARIABLES_LOADED")
 
 SlashCmdList['CARGSELLSSTUFF'] = function(link)
 	link = link:trim()

@@ -8,14 +8,16 @@
 libs\LibStub.lua
 libs\CallbackHandler-1.0.lua
 libs\LibDataBroker-1.1.lua
+
 libs\LibCargoShip-2.0\LibCargoShip-2.0.lua
 libs\LibFx-1.1\LibFx-1.1.lua
+libs\LibCargEvents-1.0\LibCargEvents-1.0.lua
 
 ui.lua
 
 afk.lua
 attach.lua
-bars.lua
+# bars.lua
 # battlefieldMap.lua
 broker.lua
 chatLulz.lua

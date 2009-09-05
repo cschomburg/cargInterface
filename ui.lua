@@ -1,6 +1,7 @@
 --[[
 	cargUI
 ]]
+local LCE = LibStub("LibCargEvents-1.0")
 
 PVPParentFrameTab2:Click()
 
@@ -11,9 +12,7 @@ local dummy = function() end
 
 RAID_CLASS_COLORS['SHAMAN'] = { r = 0, g = .8, b = .6 }
 
-local addon = CreateFrame("Frame", nil, UIParent)
-addon:RegisterEvent"PLAYER_ENTERING_WORLD"
-addon:SetScript("OnEvent", function()
+LCE.RegisterEvent("cargUI", "PLAYER_ENTERING_WORLD", function()
 	ChatFrame1:ClearAllPoints()
 	ChatFrame1:SetPoint("BOTTOMLEFT")
 	ChatFrame1:SetWidth(300)
@@ -29,7 +28,7 @@ addon:SetScript("OnEvent", function()
 	ChatFrame3:SetUserPlaced(nil)
 	ChatFrame1:SetFrameLevel(1)
 end)
-	
+
 UIParent:SetScale(0.75)
 
 local BAR_WIDTH = 220

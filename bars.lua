@@ -33,13 +33,12 @@ local anchoredFrames = {
 	MultiBarBottomLeft,
 	MultiBarBottomRight,
 	MultiBarLeft,
+	BonusActionBarFrame,
 }
 local hiddenForever = {
 	MainMenuBar,
 	ShapeshiftBarFrame,
 	MultiBarRight,
-	BonusActionBarFrame,
-	ShapeshiftBarFrame,
 }
 
 local prev
