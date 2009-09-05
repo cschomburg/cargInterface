@@ -44,7 +44,7 @@ LCE.RegisterEvent("cargMinimap", "PLAYER_LOGIN", function()
 
 	MinimapCluster:ClearAllPoints()
     MinimapCluster:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT")
-	MinimapCluster:SetScale(2.4)
+	MinimapCluster:SetScale(0.01)
 
     MiniMapBattlefieldFrame:SetParent(Minimap)
     MiniMapBattlefieldFrame:ClearAllPoints()
@@ -97,5 +97,12 @@ LCE.RegisterEvent("cargMinimap", "MINIMAP_UPDATE_TRACKING", function()
 end)
 
 Minimap:SetZoom(0)
-function ToggleMinimap() ToggleFrame(MinimapCluster) end
-MinimapCluster:Hide()
+local shown = false
+function ToggleMinimap()
+	if(shown) then
+		MinimapCluster:SetScale(0.01)
+	else
+		MinimapCluster:SetScale(2.4)
+	end
+	shown = not shown
+end

@@ -28,4 +28,5 @@ loader.lua
 map.lua
 minimap.lua
 sellStuff.lua
+slash.lua
 thankTheLight.lua
