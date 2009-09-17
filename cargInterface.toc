@@ -2,14 +2,14 @@
 ## Title: cargInterface
 ## Author: Cargor
 ## Notes: Provides a collection of small ui tweaking mods
-## RequiredDeps: oUF_TribalGears
 ## SavedVariables: FindYourWay, cargSellsStuff
+## OptionalDeps: oUF
 
 libs\LibStub.lua
 libs\CallbackHandler-1.0.lua
 libs\LibDataBroker-1.1.lua
 
-libs\LibCargoShip-2.0\LibCargoShip-2.0.lua
+libs\LibCargoShip-2.1\LibCargoShip-2.1.lua
 libs\LibFx-1.1\LibFx-1.1.lua
 libs\LibCargEvents-1.0\LibCargEvents-1.0.lua
 

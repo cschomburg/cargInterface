@@ -1,8 +1,11 @@
+local cargoShip = LibStub("LibCargoShip-2.1")
+local LCE = LibStub("LibCargEvents-1.0")
+
 local friends = cargoShip{
 	name = "picoFriends",
 	noIcon = true
 }
-friends:SetPoint("BOTTOMRIGHT", cargUI2, "BOTTOMRIGHT", -5, 2)
+friends:SetPoint("BOTTOMRIGHT", cargUI2 or UIParent, "BOTTOMRIGHT", -5, 2)
 
 local durability = cargoShip{
 	name = "Attrition",
@@ -30,8 +33,7 @@ local tourGuide = cargoShip{
 }
 tourGuide:SetPoint("BOTTOM", 0, 10)
 
-local f = CreateFrame"Frame"
-f:SetScript("OnEvent", function(self, event)
+LCE.RegisterEvent("cargBroker", "PLAYER_ENTERING_WORLD", function(self, event)
 	if(select(2, IsInInstance()) == "pvp") then
 		honor:Show()
 		tourGuide:Hide()
@@ -40,4 +42,3 @@ f:SetScript("OnEvent", function(self, event)
 		tourGuide:Show()
 	end
 end)
-f:RegisterEvent"PLAYER_ENTERING_WORLD"

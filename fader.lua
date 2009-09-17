@@ -3,25 +3,12 @@
 ]]
 
 local LFX = LibStub and LibStub("LibFx-1.1", true)
-local fadePlayer = LFX.New{
-	frame = oUF_Player,
-	anim = "Alpha",
-	ramp = "Smooth",
-	finish = 1,
-	duration = 0.3,
-}
-local fadeTarget = LFX.New{
-	frame = oUF_Target,
-	anim = "Alpha",
-	ramp = "Smooth",
-	finish = 1,
-	duration = 0.3,
-}
 
-local addon = CreateFrame("Frame", nil, UIParent)
+local addon = CreateFrame"Frame"
 local status = CreateFrame("Frame", nil, UIParent)
 
 local mana, hp
+local fadePlayer, fadeTarget
 
 addon:RegisterEvent("PLAYER_REGEN_ENABLED")  
 addon:RegisterEvent("PLAYER_REGEN_DISABLED")  
@@ -54,11 +41,25 @@ function status:UpdateStatus(event, arg1)
 end
 
 function addon:ChangeAlpha()
+	fadePlayer = fadePlayer or LFX.New{
+		frame = oUF.units.player,
+		anim = "Alpha",
+		ramp = "Smooth",
+		finish = 1,
+		duration = 0.3,
+	}
+	fadeTarget = fadeTarget or LFX.New{
+		frame = oUF.units.target,
+		anim = "Alpha",
+		ramp = "Smooth",
+		finish = 1,
+		duration = 0.3,
+	}
 	if(UnitAffectingCombat("player")) then
 		fadePlayer:Stop()
 		fadeTarget:Stop()
-		oUF_Player:SetAlpha(1)
-		oUF_Target:SetAlpha(1)
+		oUF.units.player:SetAlpha(1)
+		oUF.units.target:SetAlpha(1)
 		status:Hide()
 	elseif(UnitExists("target")) then
 		fadePlayer.finish = 0.5
@@ -71,15 +72,11 @@ function addon:ChangeAlpha()
 		status:UpdateStatus()
 		fadePlayer.finish = 0
 		fadePlayer()
-		oUF_Target:SetAlpha(0)
+		oUF.units.target:SetAlpha(0)
 	end
 end
 
 addon:SetScript("OnEvent", addon.ChangeAlpha)
-addon:RegisterEvent("PLAYER_REGEN_ENABLED")  
-addon:RegisterEvent("PLAYER_REGEN_DISABLED")  
-addon:RegisterEvent("PLAYER_ENTERING_WORLD")
-addon:RegisterEvent("PLAYER_TARGET_CHANGED")
 
 status:SetScript("OnEvent", status.UpdateStatus)
 status:RegisterEvent("UNIT_MANA")
