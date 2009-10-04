@@ -4,7 +4,7 @@
 local LCE = LibStub("LibCargEvents-1.0")
 
 local function cash_to_string(cash)
-	if not cash then return "?" end
+	if(not cash) then return "no" end
 
 	local gold   = floor(cash / (100 * 100))
 	local silver = math.fmod(floor(cash / 100), 100)
@@ -49,14 +49,21 @@ LCE.RegisterEvent("cargSellsStuff", "MERCHANT_SHOW", function()
 end)
 
 SlashCmdList['CARGSELLSSTUFF'] = function(link)
-	link = link:trim()
-	local id = getID(link)
-	if(cargSellsStuff[id]) then
-		cargSellsStuff[id] = nil
-		print("Removed "..link.." from cargSellsStuff")
-	else
-		cargSellsStuff[id] = true
-		print("Added "..link.." to cargSellsStuff")
+	local added, removed
+	local found = {link:trim():split(" ")}
+
+	for _, link in pairs(found) do
+		local id = getID(link)
+		if(id and cargSellsStuff[id]) then
+			cargSellsStuff[id] = nil
+			removed = removed and removed..", "..link or link
+		elseif(id)
+			added = added and added..", "..link or link
+			cargSellsStuff[id] = true
+		end
 	end
+
+	if(removed) then print("Removed "..removed.." from cargSellsStuff") end
+	if(added) then print("Added "..added.." to cargSellsStuff") end
 end
 SLASH_CARGSELLSSTUFF1 = '/junk'
