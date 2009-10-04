@@ -57,7 +57,7 @@ SlashCmdList['CARGSELLSSTUFF'] = function(link)
 		if(id and cargSellsStuff[id]) then
 			cargSellsStuff[id] = nil
 			removed = removed and removed..", "..link or link
-		elseif(id)
+		elseif(id) then
 			added = added and added..", "..link or link
 			cargSellsStuff[id] = true
 		end
