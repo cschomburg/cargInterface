@@ -24,11 +24,9 @@ chatLulz.lua
 fader.lua
 fellowSoldiers.lua
 findYourWay.lua
-karma.lua
 loader.lua
 map.lua
 minimap.lua
 sellStuff.lua
 slash.lua
 thankTheLight.lua
-wintergrasp.lua
