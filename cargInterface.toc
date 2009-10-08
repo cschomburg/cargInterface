@@ -31,3 +31,4 @@ minimap.lua
 sellStuff.lua
 slash.lua
 thankTheLight.lua
+wintergrasp.lua

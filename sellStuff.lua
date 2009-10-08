@@ -48,11 +48,10 @@ LCE.RegisterEvent("cargSellsStuff", "MERCHANT_SHOW", function()
 	end
 end)
 
-SlashCmdList['CARGSELLSSTUFF'] = function(link)
+SlashCmdList['CARGSELLSSTUFF'] = function(msg)
 	local added, removed
-	local found = {link:trim():split(" ")}
 
-	for _, link in pairs(found) do
+	for link in msg:trim():gmatch("(|c.-|Hitem:.-|h|r)") do
 		local id = getID(link)
 		if(id and cargSellsStuff[id]) then
 			cargSellsStuff[id] = nil
