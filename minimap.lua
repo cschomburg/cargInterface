@@ -6,7 +6,7 @@ local LCE = LibStub("LibCargEvents-1.0")
 local addonPath = debugstack():match("(.+\\).-\.lua:")
 local texturepath = addonPath.."textures\\"
 
-local dummy = function() return nil end
+local dummy = function() end
 local frames = {
 	MinimapZoomIn,
 	MinimapZoomOut,
@@ -26,42 +26,41 @@ local frames = {
 }
 
 local origClick = Minimap:GetScript("OnMouseUp")
-local tracking = UIParent:CreateFontString()
-tracking:SetPoint("BOTTOMRIGHT", MinimapCluster, "TOPRIGHT", -20, 20)
+local tracking = Minimap:CreateFontString(nil, "OVERLAY")
+tracking:SetPoint("BOTTOMLEFT", Minimap, "TOPLEFT", 0, 4)
+tracking:SetPoint("BOTTOMRIGHT", Minimap, "TOPRIGHT", 0, 4)
 tracking:SetFontObject(GameFontHighlight)
 tracking:Hide()
 
+function GetMinimapShape() return 'SQUARE' end
+
 local mmp
-LCE.RegisterEvent("cargMinimap", "PLAYER_LOGIN", function()
-	if(event ~= "PLAYER_LOGIN") then return nil end
-
-	--local ring = Minimap:CreateTexture("cargMinimapRing","OVERLAY")
-	--ring:SetWidth(170)
-	--ring:SetHeight(170)
-	--ring:SetTexture(texturepath.."ring")
-	--ring:SetPoint("CENTER", Minimap, "CENTER", 0, 0)
-	--ring:SetAlpha(.2)
-
+LCE("PLAYER_LOGIN", function()
+	Minimap:ClearAllPoints()
+    Minimap:SetPoint("BOTTOMRIGHT", 0, 0)
 	MinimapCluster:ClearAllPoints()
-    MinimapCluster:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT")
-	MinimapCluster:SetScale(0.01)
+	MinimapCluster:SetPoint("BOTTOMRIGHT", 0, 41)
+	MinimapCluster:EnableMouse(false)
 
-    MiniMapBattlefieldFrame:SetParent(Minimap)
+	Minimap:SetBackdrop{
+		bgFile = [[Interface\ChatFrame\ChatFrameBackground]],
+		insets = {left=-2, right=-2, top=-2, bottom=-2}
+	}
+	Minimap:SetBackdropColor(0, 0, 0, 0.5)
+
+    MiniMapBattlefieldFrame:SetParent(BottomBar)
     MiniMapBattlefieldFrame:ClearAllPoints()
-    MiniMapBattlefieldFrame:ClearAllPoints()
-	MiniMapBattlefieldFrame:SetPoint("BOTTOMLEFT", Minimap, "TOPRIGHT", -24, 1)
-	
+	MiniMapBattlefieldFrame:SetPoint("RIGHT", -2, 0)
+
 	Minimap:EnableMouseWheel(true)
+	Minimap:SetZoom(3)
+	Minimap.SetZoom = dummy
 
-	Minimap:SetScript("OnMouseWheel", function()
-			if(arg1 < 0) then
-				Minimap_ZoomIn()
-			else
-				Minimap_ZoomOut()
-			end
+	Minimap:SetScript("OnMouseWheel", function(self)
+		self:SetScale(self:GetScale()+0.1*arg1*(IsShiftKeyDown() and 2 or 1))
 	end)
 	
-	Minimap:SetMaskTexture(texturepath.."mask")
+	Minimap:SetMaskTexture([[Interface\ChatFrame\ChatFrameBackground]])
 	
 	Minimap:SetScript("OnEnter", function() tracking:Show() end)
 	Minimap:SetScript("OnLeave", function() tracking:Hide() end)
@@ -74,17 +73,13 @@ LCE.RegisterEvent("cargMinimap", "PLAYER_LOGIN", function()
 		end
 	end)
 
-	maskTexture = nil
-
 	for _, frame in pairs(frames) do
 		frame.Show = dummy
 		frame:Hide()
 	end
-	frames = nil
-	texturepath = nil
 end)
 
-LCE.RegisterEvent("cargMinimap", "MINIMAP_UPDATE_TRACKING", function()
+LCE("MINIMAP_UPDATE_TRACKING", function()
 	local trackName, trackActive
 	for i=1, GetNumTrackingTypes() do
 		trackName, _, trackActive = GetTrackingInfo(i)
@@ -97,12 +92,13 @@ LCE.RegisterEvent("cargMinimap", "MINIMAP_UPDATE_TRACKING", function()
 end)
 
 Minimap:SetZoom(0)
-local shown = false
+local shown = true
 function ToggleMinimap()
 	if(shown) then
-		MinimapCluster:SetScale(0.01)
+		Minimap:SetScale(0.01)
 	else
-		MinimapCluster:SetScale(2.4)
+		Minimap:SetScale(1)
 	end
 	shown = not shown
 end
+ToggleMinimap()

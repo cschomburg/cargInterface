@@ -2,7 +2,7 @@
 ## Title: cargInterface
 ## Author: Cargor
 ## Notes: Provides a collection of small ui tweaking mods
-## SavedVariables: FindYourWay, cargSellsStuff, cargKarma
+## SavedVariables: FindYourWay, cargSellsStuff
 ## OptionalDeps: oUF
 
 libs\LibStub.lua

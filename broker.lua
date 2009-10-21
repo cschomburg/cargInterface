@@ -6,16 +6,7 @@ local hidden
 
 local BrokerBar = CreateFrame("Frame", nil, UIParent)
 BrokerBar:SetHeight(20)
-BrokerBar:SetBackdrop{
-	bgFile = "Interface\\AddOns\\lolTip\\Textures\\UI-StatusBar", tile = true, tileSize = 16,
-	edgeFile = "Interface\\AddOns\\lolTip\\Textures\\UI-Tooltip-Border", edgeSize = 8,
-	insets = {left = 2, right = 2, top = 2, bottom = 2},
-}
-BrokerBar:SetBackdropBorderColor(0, 0, 0)
-BrokerBar:SetFrameStrata"BACKGROUND"
 BrokerBar:SetWidth(BAR_WIDTH)
-BrokerBar:SetBackdropColor(0.1, 0.1, 0.1, 0.6)
-BrokerBar:SetFrameLevel(3)
 BrokerBar:SetPoint("BOTTOMRIGHT", BAR_WIDTH+2, -2)
 
 local hidden = true
@@ -66,7 +57,7 @@ local bottomDisplay = cargoShip{
 	scale = 1.5,
 	fontStyle = "OUTLINE",
 }
-bottomDisplay:SetPoint("BOTTOM", 0, 10)
+bottomDisplay:SetPoint("BOTTOM", 0, 5)
 
 BrokerBar:RegisterEvent("PLAYER_ENTERING_WORLD")
 BrokerBar:SetScript("OnEvent", function(self, event)

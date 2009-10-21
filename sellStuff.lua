@@ -20,11 +20,11 @@ end
 
 local function getID(link) return link and tonumber(link:match("item:(%d+)")) end
 
-LCE.RegisterEvent("cargSellsStuff", "VARIABLES_LOADED", function()
+LCE("VARIABLES_LOADED", function()
 	cargSellsStuff = cargSellsStuff or {}
 end)
 
-LCE.RegisterEvent("cargSellsStuff", "MERCHANT_SHOW", function()
+LCE("MERCHANT_SHOW", function()
 	local count = 0
 	local profit = 0
 	for bag = 0, 4 do

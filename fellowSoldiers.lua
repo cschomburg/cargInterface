@@ -8,13 +8,7 @@ local blizzIcon = [[Interface\Worldmap\WorldMapPartyIcon]]
 local dummy = function() end
 
 local friends = {}
-for i=1, GetNumFriends() do
-	friends[GetFriendInfo(i)] = true
-end
-for i=1, GetNumGuildMembers(true) do
-	friends[GetGuildRosterInfo(i)] = true
-end
-gFriends = friends
+
 local _G = getfenv(0)
 local setTex = WorldMapRaid1Icon.SetTexture
 
@@ -39,5 +33,15 @@ addon:SetScript("OnUpdate", function()
 			end
 			i = i+1
 		end
+	end
+end)
+
+addon:RegisterEvent("PLAYER_LOGIN")
+addon:SetScript("OnEvent", function()
+	for i=1, GetNumFriends() do
+		friends[GetFriendInfo(i)] = true
+	end
+	for i=1, GetNumGuildMembers(true) do
+		friends[GetGuildRosterInfo(i)] = true
 	end
 end)
