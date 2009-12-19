@@ -13,8 +13,14 @@ local dummy = function() end
 RAID_CLASS_COLORS['SHAMAN'] = { r = 0, g = .8, b = .6 }
 
 LCE("PLAYER_ENTERING_WORLD", function()
+	WatchFrame:ClearAllPoints()
+	WatchFrame:SetPoint("TOPRIGHT", UIParent, 0, -200)
+	WatchFrame.ClearAllPoints = dummy
+	WatchFrame.SetPoint = dummy
+	WatchFrame:SetHeight(500)
+
 	ChatFrame1:ClearAllPoints()
-	ChatFrame1:SetPoint("BOTTOMLEFT", 10, 10)
+	ChatFrame1:SetPoint("BOTTOMRIGHT", -10, 10)
 	ChatFrame1:SetWidth(300)
 	ChatFrame1:SetFrameStrata("MEDIUM")
 	ChatFrame1.ClearAllPoints = dummy
@@ -59,6 +65,7 @@ tastyFrame:SetScript("OnEvent", function()
 end)
 tastyFrame:RegisterEvent"BAG_UPDATE"
 
+--[[
 local bottombar = CreateFrame("Frame", "BottomBar", UIParent)
 bottombar:SetBackdrop{bgFile="Interface\\AddOns\\cargInterface\\textures\\bottompanelC"}
 bottombar:SetPoint("BOTTOMLEFT", 0, -40)
@@ -66,7 +73,7 @@ bottombar:SetPoint("BOTTOMRIGHT", 0, -40)
 bottombar:SetHeight(128)
 bottombar:SetBackdropColor(90/255, 70/255, 70/255)
 bottombar:SetFrameStrata("BACKGROUND")
-
-WorldFrame:ClearAllPoints()
-WorldFrame:SetPoint("TOPLEFT")
-WorldFrame:SetPoint("BOTTOMRIGHT", 0, 28)
+]]
+--WorldFrame:ClearAllPoints()
+--WorldFrame:SetPoint("TOPLEFT")
+--WorldFrame:SetPoint("BOTTOMRIGHT", 0, 28)

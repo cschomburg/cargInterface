@@ -21,12 +21,14 @@ attach.lua
 # battlefieldMap.lua
 broker.lua
 chatLulz.lua
-fader.lua
+# fader.lua
 fellowSoldiers.lua
 findYourWay.lua
+friendColor.lua
 loader.lua
 map.lua
 minimap.lua
+questxp.lua
 sellStuff.lua
 slash.lua
 thankTheLight.lua

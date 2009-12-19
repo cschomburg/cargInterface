@@ -3,6 +3,8 @@
 ]]
 
 local LCE = LibStub("LibCargEvents-1.0")
+local LFX = LibStub("LibFx-1.1")
+
 local addonPath = debugstack():match("(.+\\).-\.lua:")
 local texturepath = addonPath.."textures\\"
 
@@ -36,21 +38,63 @@ function GetMinimapShape() return 'SQUARE' end
 
 local mmp
 LCE("PLAYER_LOGIN", function()
+	local art1 = Minimap:CreateTexture()
+	art1:SetPoint("CENTER")
+	art1:SetTexture(texturepath.."art1")
+	art1:SetWidth(300)
+	art1:SetHeight(300)
+	art1:SetAlpha(0.1)
+	LFX.New{
+		frame = art1,
+		anim = "Rotate",
+		deg = 360,
+		duration = 20,
+		loop = true,
+	}()
+
+	local art2 = Minimap:CreateTexture()
+	art2:SetPoint("CENTER")
+	art2:SetTexture(texturepath.."art2")
+	art2:SetWidth(375)
+	art2:SetHeight(375)
+	art2:SetAlpha(0.3)
+	LFX.New{
+		frame = art2,
+		anim = "Rotate",
+		deg = 360,
+		duration = 30,
+		loop = true,
+	}()
+
+	local art3 = Minimap:CreateTexture("gRing", "OVERLAY")
+	art3:SetTexture(texturepath.."ring")
+	art3:SetPoint("CENTER")
+	art3:SetWidth(170)
+	art3:SetHeight(170)
+	art3:SetAlpha(0.7)
+
+	local gloss = Minimap:CreateTexture(nil,"OVERLAY")
+	gloss:SetAllPoints()
+	gloss:SetTexture(texturepath.."minimap-gloss")
+	gloss:SetAlpha(0.5)
+
 	Minimap:ClearAllPoints()
-    Minimap:SetPoint("BOTTOMRIGHT", 0, 0)
+    Minimap:SetPoint("BOTTOMLEFT", 0, 0)
 	MinimapCluster:ClearAllPoints()
-	MinimapCluster:SetPoint("BOTTOMRIGHT", 0, 41)
+	MinimapCluster:SetPoint("BOTTOMLEFT", 0, 41)
 	MinimapCluster:EnableMouse(false)
 
 	Minimap:SetBackdrop{
-		bgFile = [[Interface\ChatFrame\ChatFrameBackground]],
+		bgFile = texturepath.."bg",
 		insets = {left=-2, right=-2, top=-2, bottom=-2}
 	}
 	Minimap:SetBackdropColor(0, 0, 0, 0.5)
 
-    MiniMapBattlefieldFrame:SetParent(BottomBar)
+    MiniMapBattlefieldFrame:SetParent(UIParent)
     MiniMapBattlefieldFrame:ClearAllPoints()
 	MiniMapBattlefieldFrame:SetPoint("RIGHT", -2, 0)
+
+	Minimap:SetBlipTexture(texturepath.."track")
 
 	Minimap:EnableMouseWheel(true)
 	Minimap:SetZoom(3)
@@ -59,8 +103,6 @@ LCE("PLAYER_LOGIN", function()
 	Minimap:SetScript("OnMouseWheel", function(self)
 		self:SetScale(self:GetScale()+0.1*arg1*(IsShiftKeyDown() and 2 or 1))
 	end)
-	
-	Minimap:SetMaskTexture([[Interface\ChatFrame\ChatFrameBackground]])
 	
 	Minimap:SetScript("OnEnter", function() tracking:Show() end)
 	Minimap:SetScript("OnLeave", function() tracking:Hide() end)
@@ -101,4 +143,3 @@ function ToggleMinimap()
 	end
 	shown = not shown
 end
-ToggleMinimap()

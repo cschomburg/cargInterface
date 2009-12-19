@@ -23,3 +23,19 @@ SlashCmdList["XP"] = function()
 	printf("XP: |cffffaa00%.1f%%|r - |cffffaa00%.1f%%|r rested", min/max*100, rest/max*100)
 end
 SLASH_XP1 = "/xp"
+
+
+local toggledAddons = { "Gatherer", "Routes" }
+SlashCmdList["GATHER"] = function(msg)
+	for i=1, GetNumAddOns() do
+		if(toggledAddons[GetAddOnInfo(i)]) then
+			if(msg == "off") then
+				DisableAddOn(i)
+			else
+				EnableAddOn(i)
+			end
+		end
+	end
+	ReloadUI()
+end
+SLASH_GATHER1 = "/gath"

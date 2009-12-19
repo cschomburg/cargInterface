@@ -1,10 +1,20 @@
 --[[
 	cargMap
 ]]
-UIPanelWindows["WorldMapFrame"] = {area = "center", pushable = 9}
-hooksecurefunc(WorldMapFrame, "Show", function(self)
-	self:SetScale(0.75)
-	self:EnableKeyboard(false)
+
+local function tweak()
+	WorldMapFrame:SetScale(0.75)
+	WorldMapFrame:EnableKeyboard(false)
 	BlackoutWorld:Hide()
 	WorldMapFrame:EnableMouse(false)
-end)
+	UIPanelWindows["WorldMapFrame"].area = "center"
+	WorldMapFrame:SetAttribute("UIPanelLayout-defined", false);
+end
+
+hooksecurefunc(WorldMapFrame, "Show", tweak)
+
+if(select(4, GetBuildInfo()) >= 30300) then
+	hooksecurefunc("WorldMap_ToggleSizeUp", tweak)
+end
+
+tweak()
