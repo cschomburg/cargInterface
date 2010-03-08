@@ -21,6 +21,7 @@ attach.lua
 # battlefieldMap.lua
 broker.lua
 chatLulz.lua
+# chatTabs.lua
 # fader.lua
 fellowSoldiers.lua
 findYourWay.lua

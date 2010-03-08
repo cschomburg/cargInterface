@@ -3,9 +3,11 @@
 ]]
 local addonPath = debugstack():match("(.+\\).-\.lua:")
 local texturepath = addonPath.."textures\\"
-local blizzIcon = [[Interface\Worldmap\WorldMapPartyIcon]]
+local blizzIcon = [[Interface\WorldMap\WorldMapPartyIcon]]
 
 local dummy = function() end
+
+local fLevel = WorldMapRaid1:GetFrameLevel()
 
 local friends = {}
 
@@ -14,22 +16,20 @@ local setTex = WorldMapRaid1Icon.SetTexture
 
 local addon = CreateFrame("Frame", nil, WorldMapButton)
 addon:SetScript("OnUpdate", function()
-	local colorServer = select(2, IsInInstance()) == "pvp"
 	local i=1
 	while(_G['WorldMapRaid'..i] and _G['WorldMapRaid'..i]:IsShown()) do
 		local button = _G['WorldMapRaid'..i]
 		local unit = button.unit
 		if(unit) then
-			local name, server = UnitName(unit)
+			local name = UnitName(unit)
 			local icon = _G['WorldMapRaid'..i..'Icon']
-			if(server == "") then server = nil end
 
 			if(friends[name]) then
 				setTex(icon, texturepath.."GreenDot")
-				button:SetFrameLevel(5)
+				button:SetFrameLevel(fLevel+1)
 			else
 				setTex(icon, blizzIcon)
-				button:SetFrameLevel(3)
+				button:SetFrameLevel(fLevel)
 			end
 			i = i+1
 		end

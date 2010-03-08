@@ -38,3 +38,21 @@ hooksecurefunc("InboxFrame_Update", function()
 		end
 	end
 end)
+
+local _OnClick = InboxFrame_OnClick
+InboxFrame_OnClick = function(self, index, ...)
+	local _, _, _, _, money, COD, _, hasItem, _, wasReturned, _, canReply = GetInboxHeaderInfo(index)
+ 	if(IsShiftKeyDown()) then
+		if(money > 0) then
+			TakeInboxMoney(index)
+		elseif(COD > 0) then
+			return
+		elseif(hasItem and COD == 0) then
+			TakeInboxItem(index)
+		end
+	elseif(IsControlKeyDown() and not wasReturned and canReply) then
+		ReturnInboxItem(index)
+	else
+		return _OnClick(self, index, ...)
+	end
+end

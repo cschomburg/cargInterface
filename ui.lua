@@ -35,6 +35,30 @@ LCE("PLAYER_ENTERING_WORLD", function()
 	ChatFrame3:SetUserPlaced(nil)
 end)
 
+local bar = UIParent:CreateTexture("cargUIBar", "OVERLAY")
+bar:SetTexture(0, 0, 0, 0.8)
+bar:SetPoint("LEFT", Minimap, "RIGHT", 0, 0)
+bar:SetHeight(4)
+bar:SetWidth(200)
+
+local xp = CreateFrame("StatusBar", nil, UIParent)
+xp:SetStatusBarTexture("Interface\\ChatFrame\\ChatFrameBackground")
+local c = RAID_CLASS_COLORS[select(2, UnitClass("player"))]
+xp:SetStatusBarColor(c.r,c.g,c.b)
+xp:SetAlpha(0.5)
+xp:SetPoint("TOPLEFT", bar, "BOTTOMLEFT")
+xp:SetPoint("TOPRIGHT", bar, "BOTTOMRIGHT")
+xp:SetHeight(2)
+
+xp:RegisterEvent"PLAYER_ENTERING_WORLD"
+xp:RegisterEvent"PLAYER_XP_UPDATE"
+xp:RegisterEvent"PLAYER_LEVEL_UP"
+xp:SetScript("OnEvent", function(self, event)
+	local min, max = UnitXP("player"), UnitXPMax("player")
+	self:SetMinMaxValues(0, max)
+	self:SetValue(min)
+end)
+
 UIParent:SetScale(0.75)
 
 local chatBG = CreateFrame("Frame", nil, UIParent)
