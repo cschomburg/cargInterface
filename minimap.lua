@@ -38,7 +38,7 @@ function GetMinimapShape() return 'SQUARE' end
 
 local mmp
 LCE("PLAYER_LOGIN", function()
-	local art1 = Minimap:CreateTexture()
+	local art1 = Minimap:CreateTexture(nil, "BACKGROUND")
 	art1:SetPoint("CENTER")
 	art1:SetTexture(texturepath.."art1")
 	art1:SetWidth(300)
@@ -52,12 +52,12 @@ LCE("PLAYER_LOGIN", function()
 		loop = true,
 	}()
 
-	local art2 = Minimap:CreateTexture()
+	local art2 = Minimap:CreateTexture(nil, "BACKGROUND")
 	art2:SetPoint("CENTER")
 	art2:SetTexture(texturepath.."art2")
 	art2:SetWidth(375)
 	art2:SetHeight(375)
-	art2:SetAlpha(0.3)
+	art2:SetAlpha(0.2)
 	LFX.New{
 		frame = art2,
 		anim = "Rotate",
@@ -81,7 +81,7 @@ LCE("PLAYER_LOGIN", function()
 	Minimap:ClearAllPoints()
     Minimap:SetPoint("BOTTOMLEFT", 0, 0)
 	MinimapCluster:ClearAllPoints()
-	MinimapCluster:SetPoint("BOTTOMLEFT", 0, 41)
+	MinimapCluster:SetPoint("BOTTOMLEFT", 20, 20)
 	MinimapCluster:EnableMouse(false)
 
 	Minimap:SetBackdrop{

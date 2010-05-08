@@ -12,9 +12,5 @@ local function tweak()
 end
 
 hooksecurefunc(WorldMapFrame, "Show", tweak)
-
-if(select(4, GetBuildInfo()) >= 30300) then
-	hooksecurefunc("WorldMap_ToggleSizeUp", tweak)
-end
-
+hooksecurefunc("WorldMap_ToggleSizeUp", tweak)
 tweak()
