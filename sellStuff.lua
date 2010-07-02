@@ -1,7 +1,5 @@
---[[
-	Yet another junk-selling addon
-]]
-local LCE = LibStub("LibCargEvents-1.0")
+--Yet another junk-selling addon
+local name, ns = ...
 
 local function cash_to_string(cash)
 	if(not cash) then return "no" end
@@ -20,11 +18,11 @@ end
 
 local function getID(link) return link and tonumber(link:match("item:(%d+)")) end
 
-LCE("VARIABLES_LOADED", function()
+ns.RegisterEvent("VARIABLES_LOADED", function()
 	cargSellsStuff = cargSellsStuff or {}
 end)
 
-LCE("MERCHANT_SHOW", function()
+ns.RegisterEvent("MERCHANT_SHOW", function()
 	local count = 0
 	local profit = 0
 	for bag = 0, 4 do
@@ -44,11 +42,11 @@ LCE("MERCHANT_SHOW", function()
 	end
 
 	if(count > 0) then
-		print(("Sold %d trash items for %s."):format(count, cash_to_string(profit)))
+		ns.printf("Sold %d trash items for %s.", count, cash_to_string(profit))
 	end
 end)
 
-SlashCmdList['CARGSELLSSTUFF'] = function(msg)
+ns.RegisterSlash("/junk", function(msg)
 	local added, removed
 
 	for link in msg:trim():gmatch("(|c.-|Hitem:.-|h|r)") do
@@ -64,5 +62,4 @@ SlashCmdList['CARGSELLSSTUFF'] = function(msg)
 
 	if(removed) then print("Removed "..removed.." from cargSellsStuff") end
 	if(added) then print("Added "..added.." to cargSellsStuff") end
-end
-SLASH_CARGSELLSSTUFF1 = '/junk'
+end)

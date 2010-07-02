@@ -1,3 +1,4 @@
+-- Display XP reward procentual
 function QuestInfoXPFramePoints:SetText(text)
 	local points = tonumber(text)
 	if(points) then

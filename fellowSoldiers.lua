@@ -1,8 +1,9 @@
 --[[
 	FellowSoldiers
 ]]
-local addonPath = debugstack():match("(.+\\).-\.lua:")
-local texturepath = addonPath.."textures\\"
+local name, ns = ...
+
+local textures = ns.texturePath
 local blizzIcon = [[Interface\WorldMap\WorldMapPartyIcon]]
 
 local dummy = function() end
@@ -25,7 +26,7 @@ addon:SetScript("OnUpdate", function()
 			local icon = _G['WorldMapRaid'..i..'Icon']
 
 			if(friends[name]) then
-				setTex(icon, texturepath.."GreenDot")
+				setTex(icon, textures.."GreenDot")
 				button:SetFrameLevel(fLevel+1)
 			else
 				setTex(icon, blizzIcon)
@@ -36,8 +37,7 @@ addon:SetScript("OnUpdate", function()
 	end
 end)
 
-addon:RegisterEvent("PLAYER_LOGIN")
-addon:SetScript("OnEvent", function()
+ns.OnLoad(function()
 	for i=1, GetNumFriends() do
 		friends[GetFriendInfo(i)] = true
 	end

@@ -1,13 +1,9 @@
 ## Interface: 30300
 ## Title: cargInterface
 ## Author: Cargor
-## Notes: Provides a collection of small ui tweaking mods
-## SavedVariables: FindYourWay, cargSellsStuff
-## OptionalDeps: oUF, oBindings
-
-bindings\base.lua
-bindings\priest.lua
-bindings\druid.lua
+## Notes: My user interface.
+## SavedVariables: cargSellsStuff
+## RequiredDeps: oBindings
 
 libs\LibStub.lua
 libs\CallbackHandler-1.0.lua
@@ -17,19 +13,18 @@ libs\LibCargoShip-2.1\LibCargoShip-2.1.lua
 libs\LibFx-1.1\LibFx-1.1.lua
 libs\LibCargEvents-1.0\LibCargEvents-1.0.lua
 
+shared.lua
+
+bindings\base.lua
+bindings\priest.lua
+bindings\druid.lua
+
 ui.lua
 
 afk.lua
-attach.lua
-# bars.lua
-# battlefieldMap.lua
 broker.lua
-chatLulz.lua
-# chatTabs.lua
-# fader.lua
+cvars.lua
 fellowSoldiers.lua
-findYourWay.lua
-friendColor.lua
 loader.lua
 map.lua
 minimap.lua
@@ -37,3 +32,9 @@ questxp.lua
 sellStuff.lua
 slash.lua
 thankTheLight.lua
+uiErrorsFrame.lua
+
+chat\chat.lua
+chat\dontBugMe.lua
+chat\urls.lua
+chat\who.lua

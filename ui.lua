@@ -1,8 +1,6 @@
---[[
-	cargUI
-]]
-local LCE = LibStub("LibCargEvents-1.0")
+local name, ns = ...
 
+-- Battlegrounds tab first, please!
 PVPParentFrameTab2:Click()
 
 local addonPath = debugstack():match("(.+\\).-\.lua:")
@@ -12,7 +10,7 @@ local dummy = function() end
 
 RAID_CLASS_COLORS['SHAMAN'] = { r = 0, g = .8, b = .6 }
 
-LCE("PLAYER_ENTERING_WORLD", function()
+ns.OnLoad(function()
 	WatchFrame:ClearAllPoints()
 	WatchFrame:SetPoint("TOPRIGHT", UIParent, 0, -200)
 	WatchFrame.ClearAllPoints = dummy

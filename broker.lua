@@ -1,5 +1,6 @@
+local name, ns = ...
+
 local LCS = LibStub("LibCargoShip-2.1")
-local LFX = LibStub("LibFx-1.1")
 
 LCS{
 	name = "picoFriends",
@@ -17,9 +18,7 @@ local bottomDisplay = LCS{
 }
 bottomDisplay:SetPoint("BOTTOM", 0, 5)
 
-local f = CreateFrame"Frame"
-f:RegisterEvent("PLAYER_ENTERING_WORLD")
-f:SetScript("OnEvent", function(self, event)
+ns.RegisterEvent("broker", "PLAYER_ENTERING_WORLD", function()
 	if(select(2, IsInInstance()) == "pvp") then
 		bottomDisplay:SetDataObject("cargoHonor")
 	else
