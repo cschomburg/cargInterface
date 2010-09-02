@@ -1,6 +1,6 @@
 local name, ns = ...
 
-ns.cata = select(4, GetBuildInfo()) >= 4e3
+ns.cata = select(4, GetBuildInfo()) >= 4e4
 
 ns.RegisterEvent = LibStub("LibCargEvents-1.0").RegisterEvent
 ns.FX = LibStub("LibFx-1.1")
