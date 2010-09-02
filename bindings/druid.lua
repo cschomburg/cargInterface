@@ -2,70 +2,81 @@ if(select(2, UnitClass'player') ~= 'DRUID') then return end
 
 local _, bindings = ...
 
-local druidBase = {
-	[1] = "s|Attack",
+local druidMisc = {
+	[1] = "s|Regrowth",
 	[2] = "s|Wrath",
-	[3] = "s|Healing Touch",
+	[3] = "s|Nourish",
 	[4] = "s|Rejuvenation",
 	[5] = "s|Moonfire",
-	[6] = "s|Regrowth",
-	[7] = "s|Entangling Roots",
+
+	[6] = "s|Healing Touch",
+	[7] = "s|Wild Growth", -- Resto
 	[8] = nil,
 	[9] = "s|Revive",
 
 	NUMPAD1 = "s|Abolish Poison",
 	NUMPAD2 = "s|Remove Curse",
-	NUMPAD3 = nil,
-	NUMPAD4 = "s|Hurricane",
-	NUMPAD5 = "s|Innervate",
-	NUMPAD6 = nil,
-	NUMPAD7 = nil,
+	NUMPAD3 = "s|Hibernate",
+
+	NUMPAD4 = "s|Barkskin",
+	NUMPAD5 = "s|Tranquility",
+	NUMPAD6 = "s|Survival Instincts",
+
+	NUMPAD7 = "s|Nature's Swiftness", -- Resto
 	NUMPAD8 = "s|War Stomp",
-	NUMPAD9 = "s|Barkskin",
+	NUMPAD9 = nil,
 
 	F = "s|Dire Bear Form",
 	V = "s|Cat Form",
 	G = "s|Travel Form",
+	T = "s|Tree of Life", -- Resto
 
 	shift = {
-		[1] = "s|Tranquility",
-		[2] = "s|Starfire",
-		[4] = "s|Lifebloom",
+		[1] = "m|/cast [form:1] Feral Charge - Bear; [form:3] Feral Charge - Cat; Hurricane",
+		[2] = "m|/cast [form:1/3] Faerie Fire (Feral); Faerie Fire",
+		[3] = "s|Swiftmend", -- Resto
+		[4] = "m|/cast [form:3] Savage Roar; Lifebloom",
+		[5] = "m|/cast [form:3] Rip; Innervate",
+
+		[6] = "s|Entangling Roots",
 
 		[9] = "s|Rebirth",
 
-		W = "s|Flight Form",
+		W = "s|Swift Flight Form",
 	},
 
 	ctrl = {
-		W = [[m|/cast [stance:3] Dash; [swimming] Aqua Form; Swift Zhevra]],
+		[1] = "s|Mark of the Wild",
+		[2] = "s|Thorns",
+		[3] = "s|Nature's Grasp",
+
+		W = [[m|/cast [form:3] Dash; [swimming] Aquatic Form; Swift Zhevra]],
 	},
 
 	cat = {
 		[1] = "s|Prowl",
-		[2] = "s|Mangle (Cat)",
+		[2] = "s|Mangle (Cat)", -- Feral
 		[3] = "s|Ferocious Bite",
 		[4] = [[m|/cast [stealth] Pounce; Rake]],
 		[5] = [[m|/cast [stealth] Ravage; Shred]],
-		[6] = "s|Feral Charge - Cat",
-		[7] = "s|Faerie Fire (Feral)",
-		[8] = "s|Cower",
-		[9] = "s|Rip",
-		[0] = "s|Moonfire",
 
-		NUMPAD3 = "s|Tiger's Fury",
+		NUMPAD5 = "s|Tiger's Fury",
+		NUMPAD9 = "s|Cower",
 	},
 
 	bear = {
-		[1] = "s|Growl",
-		[2] = "s|Maul",
-		[3] = "s|Swipe (Bear)",
-		[4] = "s|Bash",
-		[5] = "s|Demoralizing Roar",
-		[6] = "s|Feral Charge - Bear",
-		[7] = "s|Faerie Fire (Feral)",
-		[8] = "s|Enrage",
+		[1] = "m|/cast Lacerate\n/cast !Maul\n/startattack [harm]",
+		[2] = "m|/cast Mangle (Bear)\n/cast !Maul\n/startattack [harm]",
+		[3] = "s|Swipe (Bear)\n/cast !Maul\n/startattack [harm]",
+		[4] = "s|Demoralizing Roar",
+		[5] = "s|Maul",
+
+		NUMPAD5 = "s|Enrage",
+		NUMPAD8 = "s|Bash",
+		NUMPAD9 = "s|Frenzied Regeneration",
+
 	},
 }
 
-oBindings:RegisterKeyBindings("Feral Combat", bindings.base, druidBase)
+oBindings:RegisterKeyBindings("Feral Combat", bindings.base, druidMisc)
+oBindings:RegisterKeyBindings("Restoration", bindings.base, druidMisc)

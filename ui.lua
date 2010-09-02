@@ -1,7 +1,9 @@
 local name, ns = ...
 
--- Battlegrounds tab first, please!
-PVPParentFrameTab2:Click()
+if(not ns.cata) then
+	-- Battlegrounds tab first, please!
+	PVPParentFrameTab2:Click()
+end
 
 local addonPath = debugstack():match("(.+\\).-\.lua:")
 local texturepath = addonPath.."textures/"

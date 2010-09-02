@@ -47,8 +47,8 @@ ns.OnLoad(function()
 	Minimap.SetZoom = function() end
 
 	-- Scaling on mouseWheel
-	Minimap:SetScript("OnMouseWheel", function(self)
-		self:SetScale(self:GetScale()+0.1*arg1*(IsShiftKeyDown() and 2 or 1))
+	Minimap:SetScript("OnMouseWheel", function(self, delta)
+		self:SetScale(self:GetScale()+0.1*delta*(IsShiftKeyDown() and 2 or 1))
 	end)
 
 	-- Toggle tracking
