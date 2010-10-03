@@ -1,6 +1,10 @@
 --Yet another junk-selling addon
 local name, ns = ...
 
+ns.OnLoad(function()
+	cargSellsStuff = cargSellsStuff or {}
+end)
+
 local function cash_to_string(cash)
 	if(not cash) then return "no" end
 
@@ -17,10 +21,6 @@ local function cash_to_string(cash)
 end
 
 local function getID(link) return link and tonumber(link:match("item:(%d+)")) end
-
-ns.RegisterEvent("VARIABLES_LOADED", function()
-	cargSellsStuff = cargSellsStuff or {}
-end)
 
 ns.RegisterEvent("MERCHANT_SHOW", function()
 	local count = 0

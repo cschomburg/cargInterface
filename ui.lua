@@ -13,6 +13,8 @@ local dummy = function() end
 RAID_CLASS_COLORS['SHAMAN'] = { r = 0, g = .8, b = .6 }
 
 ns.OnLoad(function()
+	UIParent:SetScale(0.75)
+
 	WatchFrame:ClearAllPoints()
 	WatchFrame:SetPoint("TOPRIGHT", UIParent, 0, -200)
 	WatchFrame.ClearAllPoints = dummy
@@ -34,8 +36,6 @@ ns.OnLoad(function()
 	ChatFrame3.SetPoint = dummy
 	ChatFrame3:SetUserPlaced(nil)
 end)
-
-UIParent:SetScale(0.75)
 
 local chatBG = CreateFrame("Frame", nil, UIParent)
 chatBG:SetBackdrop{
